@@ -23,7 +23,7 @@ def play_quiz(filename):
 
     flashcards = load_flashcards(filename) #Reads terms/definitions from an existing text/csv file and runs the quiz.
     
-    print("\n Starting the flashcard quiz! Type 'quit' to stop early.\n")
+    print("Starting the flashcard quiz! Type 'quit' to stop early.\n")
  
     score = 0 #start score
 
@@ -39,7 +39,7 @@ def play_quiz(filename):
             print(f"Nope...The correct answer was: {definition}\n")
 
     print(f"Final Score: {score}\n")
-    username = input("Enter your username > ").strip()
+    username = input("Enter your username\n> ").strip()
     add_scores(username,score)
     print("Your score has been saved!\n")
 
@@ -99,16 +99,16 @@ def main():
         while first_choice not in e_options:
             for item in initial_choices:
                 print(f"- {item}")
-            first_choice = input("what would you like to do?\n> ").lower().strip()
+            first_choice = input("What would you like to do?\n> ").lower().strip()
             if first_choice in p_options:
-                quiz_fn = input("what is the name of your file?\n> ").lower().strip()
-                quiz_ext = input("is it a .txt or .csv file?\n> ").lower().strip()
+                quiz_fn = input("What is the name of your file?\n> ").lower().strip()
+                quiz_ext = input("Is it a .txt or .csv file?\n> ").lower().strip()
                 while quiz_ext not in file_types:
                     print_error()
-                    print("your choices are:")
+                    print("Your choices are:")
                     for item in file_types:
                         print(f"- {item}")
-                    quiz_ext = input("is it a .txt or .csv file?\n> ").lower().strip()
+                    quiz_ext = input("Is it a .txt or .csv file?\n> ").lower().strip()
                 if quiz_ext in [".csv","csv"]:
                     file_url = quiz_fn+".csv"
                 else:
