@@ -1,2 +1,6 @@
 cool_racket - 1
 0
+0
+0
+0
+rabbit:0

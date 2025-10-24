@@ -14,21 +14,22 @@ You should at minimum edit the helper functions.
 You may not necessarily have to edit the main function.
 '''
 
+#Need to ask for help because code is not adding to my score even though I have put the answer in correctly
+
 Score_file = "score_history.txt" #Python makes this file so it can put your scores in it
 
 
 def play_quiz(filename):
-    """Reads terms/definitions from an existing text file and runs the quiz."""
 
-    flashcards = load_flashcards(filename)
+    flashcards = load_flashcards(filename) #Reads terms/definitions from an existing text/csv file and runs the quiz.
     
-    print("\n🧠 Starting the flashcard quiz! Type 'quit' to stop early.\n")
+    print("\n Starting the flashcard quiz! Type 'quit' to stop early.\n")
  
-    score = 0
+    score = 0 #start score
 
     for term, definition in flashcards:
         print(f"Question: {term}")
-        answer = input("What is the answer? ").strip()
+        answer = input("What is the answer? ").strip().lower()
         if answer.lower() == "quit":
             break
         if answer.lower() == definition:
@@ -38,7 +39,8 @@ def play_quiz(filename):
             print(f"Nope...The correct answer was: {definition}\n")
 
     print(f"Final Score: {score}\n")
-    add_scores(score)
+    username = input("Enter your username > ").strip()
+    add_scores(username,score)
     print("Your score has been saved!\n")
 
 
@@ -47,19 +49,19 @@ def load_flashcards(filename):
     with open(filename, "r") as f: #read function = r
         for line in f:
             if "-" in line:
-                term, definiton = line.split("-", 1)
-                flashcards.append((term, definiton))
+                term, definiton = line.split("-", 1) #split() function, # setting the maxsplit parameter to 1, will return a list with 2 elements. https://www.w3schools.com/python/ref_string_split.asp
+                flashcards.append((term, definiton)) #reads then adds flashcard but i think i did something wrong in the parantheses...
     return flashcards
 
 
-def add_scores(score):
-    """Record username and score in the score history file."""
+def add_scores(username, score):
+    #Record scores in the score history file.
     with open(Score_file, "a") as f:
-        f.write(f"{score}\n")
+        f.write(f"{username} : {score}\n")
 
 
 def show_scores():
-    """Print all saved scores from the score history file."""
+    #Print all saved scores from the score history file.
 
     print("\nScore History:")
     with open(Score_file, "r") as f:
@@ -84,7 +86,7 @@ def print_error():
 def main():
     #initialize variables
     initial_choices = ["play","see history","exit"]
-    file_types = [".txt", "txt"]
+    file_types = [".txt", "txt", ".csv", "csv"]
     p_options = ["play","p","play game"]
     h_options = ["see history", "history", "h", "see", "sh", "s"]
     e_options = ["exit","e","exit game"]
