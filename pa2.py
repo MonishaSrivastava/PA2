@@ -49,8 +49,8 @@ def load_flashcards(filename):
     with open(filename, "r") as f: #read function = r
         for line in f:
             if "-" in line:
-                term, definiton = line.split("-", 1) #split() function, # setting the maxsplit parameter to 1, will return a list with 2 elements. https://www.w3schools.com/python/ref_string_split.asp
-                flashcards.append((term, definiton)) #reads then adds flashcard but i think i did something wrong in the parantheses...
+                term, definiton = line.split("-", 1) #split() function, + setting the maxsplit parameter to 1, will return a list with 2 elements. https://www.w3schools.com/python/ref_string_split.asp
+                flashcards.append((term, definiton)) #reads then adds flashcard but i think i did something wrong in the parantheses
     return flashcards
 
 
