@@ -13,6 +13,8 @@ Allow the user the option to view this file by printing it to the console.
 You should at minimum edit the helper functions.
 You may not necessarily have to edit the main function.
 '''
+#WWW > I think I was proud of the fact that I was able to learn a new string function called split.() which basically allowed python to spit a sentence into two parts based on whatever is defined (in my class it was the dash).  I also was proud of the fact that I was able to get python to create a new file (score_history.txt) where all saved scores and usernames were placed.
+#EBI > I think it would be even better if I was able to put any file in and it would work (ex. if i put the periodic_table.txt csv file in the code it raises an error but if I put the contents.txt or csv file it does not raise an error). I also think it would be nice if I had a function where I could delete all previous history in my saved file.
 
 #Need to ask for help because code is not adding to my score even though I have put the answer in correctly
 
@@ -27,12 +29,12 @@ def play_quiz(filename):
  
     score = 0 #inital score
 
-    for term, definition in flashcards: #for loop goes through each flashcard one by one
+    for term, definition in flashcards: #Python goes through each flashcard one by one in file
         print(f"Question: {term}") #Shows question with the variable defined as {term}
-        answer = input("What is the answer? ").strip().lower()
+        answer = input("What is the answer? ").strip()
         if answer.lower() == "quit":
             break
-        if answer.lower() == definition: #Shows definiton with the variable defined as definition
+        if answer.lower().strip() == definition: #Shows definiton with the variable defined as definition
             print("Correct!\n")
             score += 1
         else:
@@ -50,6 +52,8 @@ def load_flashcards(filename):
         for line in f:
             if "-" in line: #only processes lines that contain a -
                 term, definiton = line.split("-", 1) #split() function, + setting the maxsplit parameter to 1, will return a list with 2 elements. https://www.w3schools.com/python/ref_string_split.asp
+                term = term.strip() 
+                definiton = definiton.lower().strip() #I realized i forgot to define both term and definition, without this my code was not able to define the correct answers
                 flashcards.append((term, definiton)) 
     return flashcards #returns the list of flashcards
 
@@ -65,12 +69,12 @@ def show_scores():
 
     print("\nScore History:")
     with open(Score_file, "r") as f:
-        lines = f.readlines()
-        if not lines:
-            print("No scores to show.\n")
-        else:
-            for line in lines:
-                print(line)
+        lines = f.readlines() #python shows score_file.txt where all previous usernames and scores are held
+        if not lines: #checks if it is empty
+            print("No scores to show.\n") #if there is no scores presented in score_file.txt
+        else: #Basically tells python: if there are saved scores, print every score line by line, if not, say there are no scores
+            for line in lines: #loops through each individual line in the list inside the txt file
+                print(line) #prints each line
     print()
 
 

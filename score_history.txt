@@ -4,3 +4,5 @@ cool_racket - 1
 0
 0
 rabbit:0
+imsosmartt : 10
+imsosmart : 10
