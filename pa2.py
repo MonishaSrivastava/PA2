@@ -13,10 +13,8 @@ Allow the user the option to view this file by printing it to the console.
 You should at minimum edit the helper functions.
 You may not necessarily have to edit the main function.
 '''
-#WWW > I think I was proud of the fact that I was able to learn a new string function called split.() which basically allowed python to spit a sentence into two parts based on whatever is defined (in my class it was the dash).  I also was proud of the fact that I was able to get python to create a new file (score_history.txt) where all saved scores and usernames were placed.
-#EBI > I think it would be even better if I was able to put any file in and it would work (ex. if i put the periodic_table.txt csv file in the code it raises an error but if I put the contents.txt or csv file it does not raise an error). I also think it would be nice if I had a function where I could delete all previous history in my saved file.
-
-#Need to ask for help because code is not adding to my score even though I have put the answer in correctly
+#WWW > I think I was proud of the fact that I was able to learn a new string function called split.() which basically allowed python to spit a sentence into two parts based on whatever is defined (in my class it was the dash).  I also was proud of the fact that I was able to get python to create a new file (score_history.txt) where all saved scores and usernames were placed. I ran into the problem when even though i knew my code was correct and that it should be running properly with any file type (if they have the valid seperators) like the periodic_table.txt it would say "file not found" but i ended up figuring out that it wasn't in my PA2 folder which raises an error for python because it can't seem to find it in my computer.
+#EBI > I believe it would be nice if I had a function where I could delete all previous history in my saved file.
 
 Score_file = "score_history.txt" #Python makes this file so it can put your saved score + usernames 
 
@@ -34,7 +32,7 @@ def play_quiz(filename):
         answer = input("What is the answer? ").strip()
         if answer.lower() == "quit":
             break
-        if answer.lower().strip() == definition.lower().strip(): #Shows definiton with the variable defined as definition
+        if answer.lower().strip() == definition: #Shows definiton with the variable defined as definition
             print("Correct!\n")
             score += 1
         else:
@@ -112,7 +110,7 @@ def main():
     game_on = True
 
     while game_on:
-        print("welcome to the review game")
+        print("Welcome amazing person! > Make sure your flashcards term and definition is seperating by one of these seperators -> dash, comma, semicolon.")
         
         while first_choice not in e_options: #while not exiting (runs because their first choice is an empty string (== ""), then because they haven't typed 'exit')
             for item in initial_choices: #print out play, see history, and exit
