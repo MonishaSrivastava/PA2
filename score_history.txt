@@ -7,3 +7,8 @@ rabbit:0
 imsosmartt : 10
 imsosmart : 10
 imsosmart : 10
+yahoo : 10
+yahoo : 10
+imsosmart : 9
+imsosmart : 3
+yahoo : 1

@@ -34,7 +34,7 @@ def play_quiz(filename):
         answer = input("What is the answer? ").strip()
         if answer.lower() == "quit":
             break
-        if answer.lower().strip() == definition: #Shows definiton with the variable defined as definition
+        if answer.lower().strip() == definition.lower().strip(): #Shows definiton with the variable defined as definition
             print("Correct!\n")
             score += 1
         else:
@@ -45,16 +45,30 @@ def play_quiz(filename):
     add_scores(username,score)
     print("Your score has been saved!\n")
 
+    return score
+
 
 def load_flashcards(filename):
     flashcards = []
     with open(filename, "r") as f: #read function = r; python opens file in read mode
         for line in f:
+            line = line.strip()
+            if not line:
+                continue #skips empty lines and moves on to the next
             if "-" in line: #only processes lines that contain a -
-                term, definiton = line.split("-", 1) #split() function, + setting the maxsplit parameter to 1, will return a list with 2 elements. https://www.w3schools.com/python/ref_string_split.asp
-                term = term.strip() 
-                definiton = definiton.lower().strip() #I realized i forgot to define both term and definition, without this my code was not able to define the correct answers
-                flashcards.append((term, definiton)) 
+                term, definition = line.split("-", 1) #split() function, + setting the maxsplit parameter to 1, will return a list with 2 elements. https://www.w3schools.com/python/ref_string_split.asp
+            elif "," in line:
+                term, definition = line.split(",", 1)
+            elif ":" in line:
+                term, definition = line.split(":", 1)
+            else:
+                print("Sorry, can't play please make a flashcard quiz that is combined by either: a dash, comma, or semicolon")
+                continue #continue function skips lines that don't have a valid seperator: - , :
+
+            term = term.strip()
+            definition = definition.lower().strip() #I realized i forgot to define both term and definition, without this my code was not able to define the correct answers
+            flashcards.append((term, definition)) #the parantheses under the parenthesis defines the str function inside it in this case it's term and definiton.
+
     return flashcards #returns the list of flashcards
 
 
@@ -69,7 +83,7 @@ def show_scores():
 
     print("\nScore History:")
     with open(Score_file, "r") as f:
-        lines = f.readlines() #python shows score_file.txt where all previous usernames and scores are held
+        lines = f.readlines() #python reads score_file.txt where all previous usernames and scores are held
         if not lines: #checks if it is empty
             print("No scores to show.\n") #if there is no scores presented in score_file.txt
         else: #Basically tells python: if there are saved scores, print every score line by line, if not, say there are no scores
@@ -117,6 +131,8 @@ def main():
                     file_url = quiz_fn+".csv"
                 else:
                     file_url = quiz_fn+".txt"
+                #user_score = play_quiz(file_url)
+                #add_scores(user_score)
                 play_quiz(file_url)
             elif first_choice in h_options: #looking at previous scores
                 show_scores()
