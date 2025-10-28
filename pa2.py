@@ -87,7 +87,7 @@ def show_scores():
         else: #Basically tells python: if there are saved scores, print every score line by line, if not, say there are no scores
             for line in lines: #loops through each individual line in the list inside the txt file
                 print(line) #prints each line
-    print()
+    print() #prints your scores all together
 
 
 def print_error():
