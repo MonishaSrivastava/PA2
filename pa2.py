@@ -13,8 +13,8 @@ Allow the user the option to view this file by printing it to the console.
 You should at minimum edit the helper functions.
 You may not necessarily have to edit the main function.
 '''
-#WWW > I think I was proud of the fact that I was able to learn a new string function called split.() which basically allowed python to spit a sentence into two parts based on whatever is defined (in my class it was the dash).  I also was proud of the fact that I was able to get python to create a new file (score_history.txt) where all saved scores and usernames were placed. I ran into the problem when even though i knew my code was correct and that it should be running properly with any file type (if they have the valid seperators) like the periodic_table.txt it would say "file not found" but i ended up figuring out that it wasn't in my PA2 folder which raises an error for python because it can't seem to find it in my computer.
-#EBI > I believe it would be nice if I had a function where I could delete all previous history in my saved file.
+#WWW > I think I was proud of the fact that I was able to learn a new string function called split.() which basically allowed python to spit a sentence into two parts based on whatever is defined (in my class it was the dash).  I also was proud of the fact that I was able to get python to create a new file (score_history.txt) where all saved scores and usernames were placed. I ran into the problem when even though I knew my code was correct and that it should be running properly with any file type (if they have the valid seperators) like the periodic_table.txt it would say "file not found" but i ended up figuring out that it wasn't in my PA2 folder which raises an error for python because it can't seem to find it in my computer. I also learnt what tuples are so I think that is pretty cool too.
+#EBI > I believe it would be nice if I had a function where I could delete all previous history in my saved file (Wouldve done if I had more time). I also think it would be cool--for a question where there is a lot of possibilities I could make it so if someone types one of the correct answers it would be correct instead of incorrect.
 
 Score_file = "score_history.txt" #Python makes this file so it can put your saved score + usernames 
 
@@ -63,9 +63,10 @@ def load_flashcards(filename):
                 print("Sorry, can't play please make a flashcard quiz that is combined by either: a dash, comma, or semicolon")
                 continue #continue function skips lines that don't have a valid seperator: - , :
 
+            #without this part the code would still run EXCEPT it wont be able to define the right answers because if user types "hydrogen" python would read it as something else even though the correct answer IS hydrogen
             term = term.strip()
-            definition = definition.lower().strip() #I realized i forgot to define both term and definition, without this my code was not able to define the correct answers
-            flashcards.append((term, definition)) #the parantheses under the parenthesis defines the str function inside it in this case it's term and definiton.
+            definition = definition.lower().strip() #helps clean extra space around {term} (question part) and converts definition (answer part) to lowercase and removes any spaces when user is typing out answer
+            flashcards.append((term, definition)) #adding a new flashcard (a pair of values) to a list called flashcards (term, definition) is a tuple, a pair of values grouped together. This line adds a new tuple to the list. 1. I used this to learn about tuples https://www.w3schools.com/python/python_tuples.asp 2. I used this to learn how to append a tuple in a list https://stackoverflow.com/questions/31175223/append-a-tuple-to-a-list-whats-the-difference-between-two-ways
 
     return flashcards #returns the list of flashcards
 
@@ -117,7 +118,7 @@ def main():
                 print(f"- {item}")
             first_choice = input("What would you like to do?\n> ").lower().strip()
             if first_choice in p_options: #playing the game
-                quiz_fn = input("What is the name of your file?\n> ").lower().strip()
+                quiz_fn = input("What is the name of your file? (contents or periodic_table)\n> ").lower().strip()
                 quiz_ext = input("Is it a .txt or .csv file?\n> ").lower().strip() 
                 while quiz_ext not in file_types: #if it is not a csv or txt then it will raise an error
                     print_error()
