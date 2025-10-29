@@ -72,7 +72,7 @@ def load_flashcards(filename):
 
 
 def add_scores(username, score):
-    #Record scores in the score history file.
+    #Python records these scores in the score history file.
     with open(Score_file, "a") as f:
         f.write(f"{username} : {score}\n")
 
@@ -111,7 +111,7 @@ def main():
     game_on = True
 
     while game_on:
-        print("Welcome amazing person! > Make sure your flashcards term and definition is seperating by one of these seperators -> dash, comma, semicolon.")
+        print("Welcome amazing person! > Make sure your flashcards term and definition is seperated by one of these seperators -> dash, comma, semicolon.")
         
         while first_choice not in e_options: #while not exiting (runs because their first choice is an empty string (== ""), then because they haven't typed 'exit')
             for item in initial_choices: #print out play, see history, and exit
