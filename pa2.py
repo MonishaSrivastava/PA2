@@ -31,7 +31,7 @@ def play_quiz(filename):
         print(f"Question: {term}") #Shows question with the variable defined as {term}
         answer = input("What is the answer? ").strip()
         if answer.lower() == "quit":
-            break
+            break #stops the code
         if answer.lower().strip() == definition: #Shows definiton with the variable defined as definition
             print("Correct!\n")
             score += 1
@@ -49,10 +49,10 @@ def play_quiz(filename):
 def load_flashcards(filename):
     flashcards = []
     with open(filename, "r") as f: #read function = r; python opens file in read mode
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue #skips empty lines and moves on to the next
+        for line in f: #loops through each line
+            line = line.strip() #cleans every line by removing extra spaces before and after the text
+            if not line: #after cleaning every line it skips empty lines and moves on to the next so the program doesnt process blank entries
+                continue 
             if "-" in line: #only processes lines that contain a -
                 term, definition = line.split("-", 1) #split() function, + setting the maxsplit parameter to 1, will return a list with 2 elements. https://www.w3schools.com/python/ref_string_split.asp
             elif "," in line:
@@ -73,7 +73,7 @@ def load_flashcards(filename):
 
 def add_scores(username, score):
     #Python records these scores in the score history file.
-    with open(Score_file, "a") as f:
+    with open(Score_file, "a") as f: #a = append, adds new content into the score file instead of removing it and replacing it
         f.write(f"{username} : {score}\n")
 
 
