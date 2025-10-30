@@ -14,9 +14,9 @@ You should at minimum edit the helper functions.
 You may not necessarily have to edit the main function.
 '''
 #WWW > I think I was proud of the fact that I was able to learn a new string function called split.() which basically allowed python to spit a sentence into two parts based on whatever is defined (in my class it was the dash).  I also was proud of the fact that I was able to get python to create a new file (score_history.txt) where all saved scores and usernames were placed. I ran into the problem when even though I knew my code was correct and that it should be running properly with any file type (if they have the valid seperators) like the periodic_table.txt it would say "file not found" but i ended up figuring out that it wasn't in my PA2 folder which raises an error for python because it can't seem to find it in my computer. I also learnt what tuples are so I think that is pretty cool too.
-#EBI > It would be nice if I had a function where I could delete all previous history in my saved file. I also think it would be cool--for a question where there is a lot of possibilities I could make it so if someone types one of the correct answers it would be correct instead of incorrect. I also hoped that I could figure how to make it so if you got the filename wrong you would still be able to go back to the question
+#EBI > It would be nice if I had a function where I could delete all previous history in my saved file. I also think it would be cool: for a question where there is a lot of possibilities I could make it so if someone types one of the correct answers it would be correct instead of incorrect. I also hoped that I could figure how to make it so if you got the filename wrong you would still be able to go back to the question
 
-Score_file = "score_history.txt" #Python makes this file so it can put your saved score + usernames 
+f = open("Score_file", "x") #Python makes this file so it can put your saved score + usernames https://www.w3schools.com/python/python_file_write.asp
 
 
 def play_quiz(filename):
@@ -73,15 +73,15 @@ def load_flashcards(filename):
 
 def add_scores(username, score):
     #Python records these scores in the score history file.
-    with open(Score_file, "a") as f: #a = append, adds new content into the score file instead of removing it and replacing it
-        f.write(f"{username} : {score}\n")
+    with open("Score_file", "a") as f: #a = append, adds new content into the score file instead of removing it and replacing it https://www.w3schools.com/python/python_file_write.asp
+        f.write(f"{username} : {score}\n") #https://www.w3schools.com/python/python_file_write.asp
 
 
 def show_scores():
     #Print all saved scores from the score history file.
 
     print("\nScore History:")
-    with open(Score_file, "r") as f:
+    with open("Score_file", "r") as f:
         lines = f.readlines() #python reads score_file.txt where all previous usernames and scores are held
         if not lines: #checks if it is empty
             print("No scores to show.\n") #if there is no scores presented in score_file.txt
