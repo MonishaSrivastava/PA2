@@ -77,7 +77,7 @@ def add_scores(username, score):
         f.write(f"{username} : {score}\n") #https://www.w3schools.com/python/python_file_write.asp
 
 
-def show_scores():
+def show_scores():  
     #Print all saved scores from the score history file.
 
     print("\nScore History:")
